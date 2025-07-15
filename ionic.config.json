@@ -1,0 +1,7 @@
+{
+  "name": "angular20",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
