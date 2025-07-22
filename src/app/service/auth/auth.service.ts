@@ -31,12 +31,15 @@ export class AuthService {
   }
 
   // Método para eliminar el Bearer Token (logout)
-  logout(): void {
-    localStorage.removeItem(this.authTokenKey);
-    this.authToken.set(null);  // Limpiamos el Signal
+  logout() {
+    return this.http.post(`${environment.apiURL}/logout`,{})
   }
-
+  
   login(email: string, password: string) {
     return this.http.post<any>(`${environment.apiURL}/login`, { email, password });
+  }
+
+  async setSession(user: any) {
+    await localStorage.setItem('user', JSON.stringify(user));
   }
 }

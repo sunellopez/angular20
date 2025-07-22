@@ -1,24 +1,31 @@
-<ion-content class="ion-padding">
-  @if (isLoading) {
-    <div>Cargando...</div>
-  } @else {
-    <h2>Login</h2>
-  
-    <ion-item>
-      <ion-input label="Correo" [value]="username()" (ionInput)="onUsernameChange($event)" placeholder="Ingresa tu correo"></ion-input>
-    </ion-item>
+<ion-content class="ion-padding" [fullscreen]="false" [scrollY]="false">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Bienvenido</ion-card-title>
+      </ion-card-header>
 
-    <ion-item>
-      <ion-input label="Contraseña" [value]="password()"   (ionInput)="onPasswordChange($event)" placeholder="Ingresa tu contraseña"></ion-input>
-    </ion-item>
+      <ion-card-content>
+        <ion-item lines="none">
+            <ion-input label="Correo" type="email" [value]="username()" (ionInput)="onUsernameChange($event)" placeholder="Ingresa tu correo"></ion-input>
+        </ion-item>
 
+        <ion-item lines="none">
+           <ion-input label="Contraseña"  type="password" [value]="password()"   (ionInput)="onPasswordChange($event)" placeholder="Ingresa tu contraseña">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+           </ion-input>
+        </ion-item>
+      </ion-card-content>
+    </ion-card>
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
     <ion-button
-      expand="full"
+      expand="block"
       [disabled]="isLoading"
       color="primary"
       (click)="onLogin()"
     >
       Iniciar sesión
     </ion-button>
-  }
-</ion-content>
+  </ion-toolbar>
+</ion-footer>

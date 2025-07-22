@@ -2,18 +2,19 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
-import { IonContent, IonInput, IonItem, IonButton, IonText, ToastController } from "@ionic/angular/standalone";
+import { IonContent, IonInput, IonItem, IonButton, IonText, ToastController, IonFooter, IonToolbar, IonTitle, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInputPasswordToggle, LoadingController } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [IonButton, IonItem, IonInput, IonContent]
+  imports: [IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonLabel, IonTitle, IonToolbar, IonFooter, IonButton, IonItem, IonInput, IonContent, IonInputPasswordToggle]
 })
 export class LoginComponent  implements OnInit {
   private authService = inject(AuthService);
   private router = inject(Router);
   private toastController = inject(ToastController);
+  private loadingCtrl = inject(LoadingController);
 
   username = signal('');
   password = signal('');
@@ -24,12 +25,18 @@ export class LoginComponent  implements OnInit {
 
   ngOnInit() {}
 
-  onLogin() {
+  async onLogin() {
     if (!this.username() || !this.password()) {
       this.errorMessage = 'Por favor, ingrese un nombre de usuario y una contraseña.';
       this.showErrorToast(this.errorMessage);
       return;
     }
+
+    const loading = await this.loadingCtrl.create({
+      message: 'Cargando...',
+    });
+
+    loading.present();
 
     this.isLoading = true;
 
@@ -37,11 +44,13 @@ export class LoginComponent  implements OnInit {
     .pipe(
       finalize(() => {
         this.isLoading = false;
+        loading.dismiss();
       })
     )
     .subscribe({
       next: (res) => {
         this.authService.setAuthToken(res.token);
+        this.authService.setSession(res.user);
         this.router.navigate(['/tabs']);
       },
       error: (err) => {
@@ -56,7 +65,16 @@ export class LoginComponent  implements OnInit {
       duration: 2000,
       color: 'danger',  // Color rojo para indicar error
       position: 'top',
+      buttons: [
+        {
+          icon: 'close',
+          htmlAttributes: {
+            'aria-label': 'close',
+          },
+        },
+      ],
     });
+
     toast.present();
   }
 
