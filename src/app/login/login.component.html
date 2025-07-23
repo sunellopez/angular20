@@ -1,31 +1,38 @@
-<ion-content class="ion-padding" [fullscreen]="false" [scrollY]="false">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title class="ion-text-center">Bienvenido</ion-card-title>
-      </ion-card-header>
-
-      <ion-card-content>
-        <ion-item lines="none">
-            <ion-input label="Correo" type="email" [value]="username()" (ionInput)="onUsernameChange($event)" placeholder="Ingresa tu correo"></ion-input>
-        </ion-item>
-
-        <ion-item lines="none">
-           <ion-input label="Contraseña"  type="password" [value]="password()"   (ionInput)="onPasswordChange($event)" placeholder="Ingresa tu contraseña">
-            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-           </ion-input>
-        </ion-item>
-      </ion-card-content>
-    </ion-card>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Bienvenido</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/sign-up"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding" [fullscreen]="false">
+  <div class="content-center">
+    <ion-input shape="round" class="custom" mode="md" label="Correo" label-placement="floating" fill="outline" type="email" [value]="username()" (ionInput)="onUsernameChange($event)" placeholder="Ingresa tu correo"></ion-input>
+    <br>
+    <ion-input shape="round" class="custom" mode="md" label="Contraseña" label-placement="floating" fill="outline" type="password" [value]="password()"   (ionInput)="onPasswordChange($event)" placeholder="Ingresa tu contraseña">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input>
+  </div>
 </ion-content>
 <ion-footer>
   <ion-toolbar>
     <ion-button
+      shape="round"
       expand="block"
       [disabled]="isLoading"
       color="primary"
       (click)="onLogin()"
     >
       Iniciar sesión
+    </ion-button>
+    <ion-button
+      expand="block"
+      fill="clear"
+      color="secondary"
+      (click)="onSignUp()"
+    >
+      Registrarse
     </ion-button>
   </ion-toolbar>
 </ion-footer>

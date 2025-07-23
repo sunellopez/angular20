@@ -2,13 +2,13 @@ import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
-import { IonContent, IonInput, IonItem, IonButton, IonText, ToastController, IonFooter, IonToolbar, IonTitle, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInputPasswordToggle, LoadingController } from "@ionic/angular/standalone";
+import { IonContent, IonInput, IonItem, IonButton, IonText, ToastController, IonFooter, IonToolbar, IonTitle, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInputPasswordToggle, LoadingController, IonHeader, IonButtons, IonBackButton, IonList } from "@ionic/angular/standalone";
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonLabel, IonTitle, IonToolbar, IonFooter, IonButton, IonItem, IonInput, IonContent, IonInputPasswordToggle]
+  imports: [IonList, IonBackButton, IonButtons, IonHeader, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonLabel, IonTitle, IonToolbar, IonFooter, IonButton, IonItem, IonInput, IonContent, IonInputPasswordToggle]
 })
 export class LoginComponent  implements OnInit {
   private authService = inject(AuthService);
@@ -57,6 +57,10 @@ export class LoginComponent  implements OnInit {
         this.showErrorToast(err.error);
       }
     });
+  }
+
+  async onSignUp() {
+    this.router.navigate(['/sign-up']);
   }
 
   async showErrorToast(message: string) {
