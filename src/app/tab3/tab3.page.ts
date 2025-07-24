@@ -1,5 +1,5 @@
 import { Component, computed, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonAvatar, IonLabel, IonNote, IonText, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonIcon, IonChip, IonList, AlertController, ToastController, LoadingController } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonAvatar, IonLabel, IonNote, IonText, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonIcon, IonChip, IonList, AlertController, ToastController, LoadingController, IonImg } from '@ionic/angular/standalone';
 import { UserService } from '../service/user/user.service';
 import { AuthService } from '../service/auth/auth.service';
 import { Router } from '@angular/router';
@@ -8,7 +8,7 @@ import { finalize } from 'rxjs';
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
-  imports: [IonList, IonChip, IonIcon, IonInput, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonText, IonNote, IonLabel, IonAvatar, IonItem, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonImg, IonList, IonChip, IonIcon, IonInput, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonText, IonNote, IonLabel, IonAvatar, IonItem, IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page {
   private userService = inject(UserService);
@@ -33,10 +33,6 @@ export class Tab3Page {
       header: 'Cerrar sesión',
       message: 'Esto te desconectará de tu cuenta.',
       buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-        },
         {
           text: 'Confirmar',
           role: 'destructive',
@@ -66,6 +62,10 @@ export class Tab3Page {
               }
             });
           }
+        },
+        {
+          text: 'Cancelar',
+          role: 'cancel',
         }
       ],
     });

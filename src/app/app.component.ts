@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
-import { bookmarkOutline, close, createOutline, exitOutline, logOutOutline, personCircleOutline, personOutline, rocketOutline, settingsOutline, syncOutline } from 'ionicons/icons';
+import { bookmarkOutline, close, createOutline, exitOutline, logOutOutline, notificationsOutline, personCircleOutline, personOutline, rocketOutline, settingsOutline, syncOutline } from 'ionicons/icons';
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html',
@@ -10,6 +10,6 @@ import { bookmarkOutline, close, createOutline, exitOutline, logOutOutline, pers
 })
 export class AppComponent {
   constructor() {
-     addIcons({ close, personOutline, settingsOutline, rocketOutline, syncOutline, bookmarkOutline, createOutline, personCircleOutline, logOutOutline, exitOutline});
+     addIcons({ close, personOutline, settingsOutline, rocketOutline, syncOutline, bookmarkOutline, createOutline, personCircleOutline, logOutOutline, exitOutline, notificationsOutline});
   }
 }
