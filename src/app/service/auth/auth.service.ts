@@ -32,11 +32,11 @@ export class AuthService {
 
   // Método para eliminar el Bearer Token (logout)
   logout() {
-    return this.http.post(`${environment.apiURL}/logout`,{})
+    return this.http.post(`${environment.apiUrl}/logout`,{})
   }
   
   login(email: string, password: string) {
-    return this.http.post<any>(`${environment.apiURL}/login`, { email, password });
+    return this.http.post<any>(`${environment.apiUrl}/login`, { email, password });
   }
 
   async setSession(user: any) {
