@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './sign-up.page.html',
   styleUrls: ['./sign-up.page.scss'],
   standalone: true,
-  imports: [IonButton, IonInput, IonItem, IonList, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInputPasswordToggle, ReactiveFormsModule]
+  imports: [IonButton, IonInput, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInputPasswordToggle, ReactiveFormsModule]
 })
 export class SignUpPage implements OnInit {
   private fb = inject(FormBuilder);

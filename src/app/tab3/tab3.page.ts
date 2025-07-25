@@ -8,7 +8,7 @@ import { finalize } from 'rxjs';
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
-  imports: [IonImg, IonList, IonChip, IonIcon, IonInput, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonText, IonNote, IonLabel, IonAvatar, IonItem, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonList, IonIcon, IonNote, IonLabel, IonAvatar, IonItem, IonHeader, IonToolbar, IonTitle, IonContent],
 })
 export class Tab3Page {
   private userService = inject(UserService);
@@ -51,8 +51,7 @@ export class Tab3Page {
             .subscribe({
               next: async (res: any) => {
                 if (res.success) {
-                  this.authService.setAuthToken('');
-                  this.authService.setSession(null);
+                  this.authService.clearSession();
                   this.showSuccessToast(res.message);
                   this.router.navigate(['/login']);
                 }

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -8,9 +8,9 @@ import { environment } from 'src/environments/environment';
 export class AuthService {
   private readonly authTokenKey = 'auth_token';
   private apiUrl = environment.apiUrl;
-  // Signal que guarda el Bearer Token (puedes cambiar a otro tipo si lo prefieres)
   private authToken = signal<string | null>(this.getAuthTokenFromStorage());
   private http = inject(HttpClient);
+  readonly isAuthenticated = computed(() => !!this.authToken());
 
   constructor() {}
 
@@ -45,5 +45,11 @@ export class AuthService {
 
   signUp(userData: any) {
     return this.http.post(`${this.apiUrl}/sign-up`, userData);
+  }
+
+  clearSession() {
+    localStorage.removeItem(this.authTokenKey);
+    localStorage.removeItem('user');
+    this.authToken.set(null);
   }
 }

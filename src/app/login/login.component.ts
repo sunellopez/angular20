@@ -1,15 +1,15 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { Component, effect, inject, OnInit, signal } from '@angular/core';
 import { AuthService } from '../service/auth/auth.service';
 import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
-import { IonContent, IonInput, IonItem, IonButton, IonText, ToastController, IonFooter, IonToolbar, IonTitle, IonLabel, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInputPasswordToggle, LoadingController, IonHeader, IonButtons, IonBackButton, IonList} from "@ionic/angular/standalone";
+import { IonContent, IonInput, IonButton, ToastController, IonFooter, IonToolbar, IonTitle, IonInputPasswordToggle, LoadingController, IonHeader } from "@ionic/angular/standalone";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [IonList, IonBackButton, IonButtons, IonHeader, IonCardContent, IonCardTitle, IonCardHeader, IonCard, IonLabel, IonTitle, IonToolbar, IonFooter, IonButton, IonItem, IonInput, IonContent, IonInputPasswordToggle, ReactiveFormsModule]
+  imports: [IonHeader, IonTitle, IonToolbar, IonFooter, IonButton, IonInput, IonContent, IonInputPasswordToggle, ReactiveFormsModule]
 })
 export class LoginComponent  implements OnInit {
   private fb = inject(FormBuilder);
@@ -25,9 +25,15 @@ export class LoginComponent  implements OnInit {
 
   errorMessage: string = '';
 
-  constructor() { }
+  constructor() { 
+    effect(() => {
+      if (this.authService.isAuthenticated()) {
+        this.router.navigate(['/tabs']);
+      }
+    });
+  }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   async onLogin() {
     if (this.form.invalid) return;
