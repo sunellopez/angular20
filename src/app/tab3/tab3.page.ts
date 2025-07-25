@@ -18,10 +18,7 @@ export class Tab3Page {
   private loadingCtrl = inject(LoadingController);
   private router = inject(Router);
   
-  protected user = computed(() => {
-    const user = this.userService.getUserSession();
-    return user ? JSON.parse(user) : null;
-  });
+  protected user = this.authService.getUserSignal();
 
   constructor() {}
 

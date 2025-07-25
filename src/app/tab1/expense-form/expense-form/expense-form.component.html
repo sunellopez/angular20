@@ -1,18 +1,8 @@
-<ion-header class="ion-no-border">
-  <ion-toolbar>
-    <ion-title>Nuevo Gasto</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="close()">
-        <ion-icon slot="icon-only" name="close"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
   <form [formGroup]="form">
     <ion-list inset="true">
       <ion-item>
-        <ion-input label="Monto" type="number" formControlName="amount" placeholder="$"></ion-input>
+        <ion-input label="Monto" type="number" formControlName="amount" placeholder="$"  (ionFocus)="expand.emit()"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label>Fecha</ion-label>

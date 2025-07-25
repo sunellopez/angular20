@@ -1,18 +1,12 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true" color="light">
-  <ion-header collapse="condense">
-    <ion-toolbar color="light">
-      <ion-title size="large">Home</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
+  <ion-item>
+    <ion-label>
+      <strong>Expenses</strong> <br>
+      <ion-text>Expenses</ion-text> <br>
+      <ion-note>{{ summary().end }}</ion-note>
+    </ion-label>
+  </ion-item>
+  
   <ion-card>
     <ion-card-header>
       <ion-card-title>Resumen Semanal</ion-card-title>
@@ -37,4 +31,30 @@
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
+
+  <ion-modal
+    [isOpen]="isOpen"
+    [initialBreakpoint]="0.5"
+    [breakpoints]="[0.25, 0.5, 0.85]"
+    (willDismiss)="handleDismiss($event)"
+    #modal
+  >
+    <ng-template>
+      <ion-header  class="ion-no-border">
+        <ion-toolbar>
+          <ion-title>Nuevo Gasto</ion-title>
+          <ion-buttons slot="end">
+            <ion-button (click)="isOpen = false">
+              <ion-icon slot="icon-only" name="close"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <app-expense-form
+          (expand)="modal.setCurrentBreakpoint(0.85)"
+        ></app-expense-form>
+      </ion-content>
+    </ng-template>
+  </ion-modal>
 </ion-content>

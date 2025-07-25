@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IonHeader, IonToolbar, IonButtons, IonButton, IonTitle, IonIcon, IonContent, IonItem, IonLabel, IonInput, IonDatetime, IonTextarea, IonList, IonModal, IonDatetimeButton, IonNote, ModalController, ToastController, LoadingController } from "@ionic/angular/standalone";
 import { finalize } from 'rxjs';
@@ -16,6 +16,7 @@ export class ExpenseFormComponent  implements OnInit {
   private expenseService = inject(ExpenseService);
   private toastController = inject(ToastController);
   private loadingCtrl = inject(LoadingController);
+  protected expand = output();
 
   form = this.fb.group({
     description: ['', Validators.required],
@@ -28,7 +29,10 @@ export class ExpenseFormComponent  implements OnInit {
   ngOnInit() {}
 
   async save() {
-    if (this.form.invalid) return;
+    if (this.form.invalid) {
+      this.form.markAllAsTouched();
+      return;
+    }
 
     const expense = this.form.value;
     

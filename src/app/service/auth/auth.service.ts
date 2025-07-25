@@ -7,49 +7,68 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private readonly authTokenKey = 'auth_token';
+  private readonly userKey = 'user';
+
   private apiUrl = environment.apiUrl;
-  private authToken = signal<string | null>(this.getAuthTokenFromStorage());
   private http = inject(HttpClient);
+
+  private authToken = signal<string | null>(this.getAuthTokenFromStorage());
+  private user = signal<any | null>(this.getUserFromStorage());
+
   readonly isAuthenticated = computed(() => !!this.authToken());
 
   constructor() {}
 
-  // Método para obtener el Bearer Token
+  // === TOKEN ===
   getAuthToken(): string {
-    return this.authToken() ?? '';  // Si no hay token, devolvemos un string vacío
+    return this.authToken() ?? '';
   }
 
-  // Método para establecer el Bearer Token
   setAuthToken(token: string): void {
     localStorage.setItem(this.authTokenKey, token);
-    this.authToken.set(token);  // Actualizamos el Signal con el nuevo token
+    this.authToken.set(token);
   }
 
-  // Método para obtener el token desde el almacenamiento
   private getAuthTokenFromStorage(): string | null {
     return localStorage.getItem(this.authTokenKey);
   }
 
-  // Método para eliminar el Bearer Token (logout)
-  logout() {
-    return this.http.post(`${this.apiUrl}/logout`,{})
+  // === USER ===
+  getUser() {
+    return this.user();
   }
-  
-  login(userData: any) {
-    return this.http.post<any>(`${this.apiUrl}/login`, userData);
+
+  getUserSignal() {
+    return this.user();
+  }
+
+  private getUserFromStorage(): any | null {
+    const saved = localStorage.getItem(this.userKey);
+    return saved ? JSON.parse(saved) : null;
   }
 
   async setSession(user: any) {
-    await localStorage.setItem('user', JSON.stringify(user));
-  }
-
-  signUp(userData: any) {
-    return this.http.post(`${this.apiUrl}/sign-up`, userData);
+    localStorage.setItem(this.userKey, JSON.stringify(user));
+    this.user.set(user);
   }
 
   clearSession() {
     localStorage.removeItem(this.authTokenKey);
-    localStorage.removeItem('user');
+    localStorage.removeItem(this.userKey);
     this.authToken.set(null);
+    this.user.set(null);
+  }
+
+  // === API ===
+  login(userData: any) {
+    return this.http.post<any>(`${this.apiUrl}/login`, userData);
+  }
+
+  logout() {
+    return this.http.post(`${this.apiUrl}/logout`, {});
+  }
+
+  signUp(userData: any) {
+    return this.http.post(`${this.apiUrl}/sign-up`, userData);
   }
 }

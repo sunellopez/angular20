@@ -25,15 +25,13 @@ export class LoginComponent  implements OnInit {
 
   errorMessage: string = '';
 
-  constructor() { 
-    effect(() => {
-      if (this.authService.isAuthenticated()) {
-        this.router.navigate(['/tabs']);
-      }
-    });
-  }
+  constructor() { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    if (this.authService.isAuthenticated()) {
+      this.router.navigate(['/tabs'], { replaceUrl: true });
+    }
+  }
 
   async onLogin() {
     if (this.form.invalid) return;
