@@ -6,11 +6,13 @@
 
 <ion-content class="ion-padding" [fullscreen]="false" color="light">
   <div class="content-center">
-    <ion-input shape="round" class="custom" mode="md" label="Correo" fill="outline" type="email" [value]="username()" (ionInput)="onUsernameChange($event)" placeholder="Ingresa tu correo"></ion-input>
-    <br>
-    <ion-input shape="round" class="custom" mode="md" label="Contraseña" fill="outline" type="password" [value]="password()"   (ionInput)="onPasswordChange($event)" placeholder="Ingresa tu contraseña">
-      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-    </ion-input>
+    <form [formGroup]="form">
+      <ion-input shape="round" class="custom" mode="md" label="Correo" fill="outline" type="email" placeholder="Ingresa tu correo" formControlName="email"></ion-input>
+      <br>
+      <ion-input shape="round" class="custom" mode="md" label="Contraseña" fill="outline" type="password" placeholder="Ingresa tu contraseña" formControlName="password">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input>
+    </form>
   </div>
 </ion-content>
 
@@ -19,9 +21,9 @@
     <ion-button
       shape="round"
       expand="block"
-      [disabled]="isLoading"
       color="primary"
       (click)="onLogin()"
+      [disabled]="form.invalid"
     >
       Iniciar sesión
     </ion-button>

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private readonly authTokenKey = 'auth_token';
-
+  private apiUrl = environment.apiUrl;
   // Signal que guarda el Bearer Token (puedes cambiar a otro tipo si lo prefieres)
   private authToken = signal<string | null>(this.getAuthTokenFromStorage());
   private http = inject(HttpClient);
@@ -32,14 +32,18 @@ export class AuthService {
 
   // Método para eliminar el Bearer Token (logout)
   logout() {
-    return this.http.post(`${environment.apiUrl}/logout`,{})
+    return this.http.post(`${this.apiUrl}/logout`,{})
   }
   
-  login(email: string, password: string) {
-    return this.http.post<any>(`${environment.apiUrl}/login`, { email, password });
+  login(userData: any) {
+    return this.http.post<any>(`${this.apiUrl}/login`, userData);
   }
 
   async setSession(user: any) {
     await localStorage.setItem('user', JSON.stringify(user));
+  }
+
+  signUp(userData: any) {
+    return this.http.post(`${this.apiUrl}/sign-up`, userData);
   }
 }

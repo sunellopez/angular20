@@ -1,5 +1,5 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="light">
     <ion-title>sign-up</ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/login"></ion-back-button>
@@ -7,10 +7,15 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">sign-up</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding" [fullscreen]="false" color="light">
+  <form [formGroup]="form">
+    <ion-input shape="round" mode="md" label="Nombre" fill="outline" placeholder="Nombre" formControlName="name"></ion-input><br>
+    <ion-input shape="round" mode="md" label="Correo" fill="outline" type="email" placeholder="Ingresa tu correo" formControlName="email"></ion-input><br>
+    <ion-input shape="round" mode="md" label="Contraseña" fill="outline" type="password" placeholder="Ingresa tu contraseña" formControlName="password">
+      <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+    </ion-input><br>
+    <ion-button shape="round" expand="block" (click)="save()" [disabled]="form.invalid">
+      Crear cuenta
+    </ion-button>
+  </form>
 </ion-content>
