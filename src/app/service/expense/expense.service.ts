@@ -12,9 +12,9 @@ export class ExpenseService {
   
   constructor() { }
 
-  // getAll(): Observable<Expense[]> {
-  //   return this.http.get<Expense[]>(this.apiUrl);
-  // }
+  getExpenses(page: number = 1) {
+    return this.http.get<any>(`${this.apiUrl}/expenses?page=${page}`);
+  }
 
   add(expense: any) {
     return this.http.post(`${this.apiUrl}/expenses`, expense);

@@ -39,7 +39,7 @@ export class AuthService {
   }
 
   getUserSignal() {
-    return this.user();
+    return this.user;
   }
 
   private getUserFromStorage(): any | null {
