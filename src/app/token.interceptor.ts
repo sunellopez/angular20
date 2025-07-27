@@ -3,21 +3,22 @@ import { AuthService } from './service/auth/auth.service';
 import { inject } from '@angular/core';
 
 export const tokenInterceptor: HttpInterceptorFn = (req, next) => {
-  // Inyectamos el AuthService para obtener el token de autenticación
-  const authToken = inject(AuthService).getAuthToken();  // Aquí llamamos a tu método para obtener el token
+    // Inyectamos el AuthService para obtener el token de autenticación
+    const authToken = inject(AuthService).getAuthToken();  // Aquí llamamos a tu método para obtener el token
 
-  // Si el token está presente, clonamos la solicitud y añadimos el encabezado de autorización con Bearer Token
-  if (authToken) {
+  // Preparamos headers base con ngrok skip header
+    const headersConfig: Record<string, string> = {
+      'ngrok-skip-browser-warning': '1',
+    };
+
+    // Si hay token, agregamos Authorization
+    if (authToken) {
+      headersConfig['Authorization'] = `Bearer ${authToken}`;
+    }
+
     const newReq = req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${authToken}`,  // Aquí agregamos el Bearer Token
-      },
+      setHeaders: headersConfig,
     });
-
-    // Pasamos la solicitud modificada al siguiente manejador
+    
     return next(newReq);
-  }
-
-  // Si no hay token, simplemente continuamos con la solicitud original
-  return next(req);
 };
