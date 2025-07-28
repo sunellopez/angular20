@@ -1,21 +1,28 @@
-import { ChangeDetectionStrategy, Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, signal, WritableSignal } from '@angular/core';
 import { IonThumbnail, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonItem, IonCardContent, IonLabel, IonNote, IonList, IonFab, IonFabButton, IonIcon, IonModal, IonButtons, IonButton, IonCol, IonGrid, IonRow, IonInfiniteScroll, IonInfiniteScrollContent, IonItemDivider, IonItemGroup, IonSkeletonText } from '@ionic/angular/standalone';
 import { ExpenseService } from '../service/expense/expense.service';
 import { ExpenseFormComponent } from './expense-form/expense-form/expense-form.component';
 import { CurrencyPipe } from '@angular/common';
 import { finalize } from 'rxjs';
+import { Expense, Summary } from '@interfaces';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonThumbnail, IonSkeletonText, CurrencyPipe, IonItemGroup, IonItemDivider, IonInfiniteScrollContent, IonInfiniteScroll, IonRow, IonGrid, IonCol, IonButton, IonButtons, ExpenseFormComponent, IonModal, IonIcon, IonFabButton, IonFab, IonList, IonNote, IonLabel, IonCardContent, IonItem, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent]
+  imports: [IonThumbnail, IonSkeletonText, CurrencyPipe, IonItemGroup, IonItemDivider, IonInfiniteScrollContent, IonInfiniteScroll, IonRow, IonGrid, IonCol, IonButton, IonButtons, ExpenseFormComponent, IonModal, IonIcon, IonFabButton, IonFab, IonList, IonNote, IonLabel, IonCardContent, IonItem, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent],
+  standalone: true
 })
 export class Tab1Page {
   private expenseService = inject(ExpenseService);
   
   protected isOpen = false;
-  protected summary: WritableSignal<any> = signal([]);
-  expenses: any[] = [];
+  protected summary = signal<Summary>({
+    total: 0,
+    start: '',
+    end: '',
+    count: 0
+  });
+  expenses: Expense[] = [];
   currentPage = 1;
   hasMore = true;
   isLoading = false;
@@ -31,7 +38,6 @@ export class Tab1Page {
 
   loadSummary() {
     this.isLoadingSummary.set(true);
-    this.summary.set([]);
 
     this.expenseService.getWeeklySummary()
     .pipe(
@@ -41,7 +47,7 @@ export class Tab1Page {
     )
     .subscribe({
       next: (res: any) => {
-        this.summary.set(res);
+        this.summary.set(res.data);
       },
       error(err: any) {
         console.log('Error:', err)
