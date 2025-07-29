@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { IonApp, IonRouterOutlet } from '@ionic/angular/standalone';
 
 import { addIcons } from 'ionicons';
-import { add, addOutline, alertCircle, bookmarkOutline, cartOutline, checkmarkCircle, close, closeOutline, createOutline, exitOutline, homeOutline, logOutOutline, notificationsOutline, personCircleOutline, personOutline, rocketOutline, settingsOutline, syncOutline, walletOutline } from 'ionicons/icons';
+import { add, addOutline, alertCircle, bookmarkOutline, cartOutline, checkmarkCircle, close, closeOutline, createOutline, exitOutline, homeOutline, logOutOutline, notificationsOutline, personCircleOutline, personOutline, pieChartOutline, rocketOutline, settingsOutline, syncOutline, walletOutline } from 'ionicons/icons';
 import { NetworkService } from './service/network/network.service';
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent {
   private network = inject(NetworkService);
   
   constructor() {
-    addIcons({ close, personOutline, settingsOutline, rocketOutline, syncOutline, bookmarkOutline, createOutline, personCircleOutline, logOutOutline, exitOutline, notificationsOutline, homeOutline, addOutline, closeOutline, add, alertCircle, checkmarkCircle, cartOutline, walletOutline});
+    addIcons({ close, personOutline, settingsOutline, rocketOutline, syncOutline, bookmarkOutline, createOutline, personCircleOutline, logOutOutline, exitOutline, notificationsOutline, homeOutline, addOutline, closeOutline, add, alertCircle, checkmarkCircle, cartOutline, walletOutline, pieChartOutline });
   }
     
   ngOnInit() {

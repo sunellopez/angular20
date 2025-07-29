@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonButton, IonContent, IonItem, IonLabel, IonInput, IonDatetime, IonTextarea, IonList, IonModal, IonDatetimeButton, ModalController, ToastController, LoadingController } from "@ionic/angular/standalone";
+import { IonButton, IonItem, IonLabel, IonInput, IonDatetime, IonTextarea, IonList, IonModal, IonDatetimeButton, ModalController, ToastController, LoadingController } from "@ionic/angular/standalone";
 import { finalize } from 'rxjs';
 import { ExpenseService } from 'src/app/service/expense/expense.service';
 
@@ -8,7 +8,7 @@ import { ExpenseService } from 'src/app/service/expense/expense.service';
   selector: 'app-expense-form',
   templateUrl: './expense-form.component.html',
   styleUrls: ['./expense-form.component.scss'],
-  imports: [IonDatetimeButton, IonModal, IonList, IonTextarea, ReactiveFormsModule, IonDatetime, IonInput, IonLabel, IonItem, IonContent, IonButton]
+  imports: [IonDatetimeButton, IonModal, IonList, IonTextarea, ReactiveFormsModule, IonDatetime, IonInput, IonLabel, IonItem, IonButton]
 })
 export class ExpenseFormComponent  implements OnInit {
   private fb = inject(FormBuilder);

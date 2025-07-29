@@ -1,15 +1,16 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { IonThumbnail, IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonCardTitle, IonCardSubtitle, IonItem, IonCardContent, IonLabel, IonNote, IonList, IonFab, IonFabButton, IonIcon, IonModal, IonButtons, IonButton, IonCol, IonGrid, IonRow, IonInfiniteScroll, IonInfiniteScrollContent, IonItemDivider, IonItemGroup, IonSkeletonText } from '@ionic/angular/standalone';
+import { IonThumbnail, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonNote, IonList, IonFab, IonFabButton, IonIcon, IonModal, IonButtons, IonButton, IonCol, IonGrid, IonRow, IonInfiniteScroll, IonInfiniteScrollContent, IonSkeletonText, IonListHeader } from '@ionic/angular/standalone';
 import { ExpenseService } from '../service/expense/expense.service';
-import { ExpenseFormComponent } from './expense-form/expense-form/expense-form.component';
-import { CurrencyPipe } from '@angular/common';
+import { ExpenseFormComponent } from './expense-form/expense-form.component';
+import { CurrencyPipe, DatePipe } from '@angular/common';
 import { finalize } from 'rxjs';
 import { Expense, Summary } from '@interfaces';
+import { SummaryComponent } from './summary/summary.component';
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonThumbnail, IonSkeletonText, CurrencyPipe, IonItemGroup, IonItemDivider, IonInfiniteScrollContent, IonInfiniteScroll, IonRow, IonGrid, IonCol, IonButton, IonButtons, ExpenseFormComponent, IonModal, IonIcon, IonFabButton, IonFab, IonList, IonNote, IonLabel, IonCardContent, IonItem, IonCardSubtitle, IonCardTitle, IonCardHeader, IonCard, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonListHeader, SummaryComponent, DatePipe, IonThumbnail, IonSkeletonText, CurrencyPipe, IonInfiniteScrollContent, IonInfiniteScroll, IonRow, IonGrid, IonCol, IonButton, IonButtons, ExpenseFormComponent, IonModal, IonIcon, IonFabButton, IonFab, IonList, IonNote, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent],
   standalone: true
 })
 export class Tab1Page {

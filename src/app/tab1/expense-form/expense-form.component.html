@@ -1,0 +1,26 @@
+<form [formGroup]="form">
+  <ion-list inset="true">
+    <ion-item>
+      <ion-input label="Monto" type="number" formControlName="amount" placeholder="$"  (ionFocus)="expand.emit()"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>Fecha</ion-label>
+      <ion-datetime-button datetime="date" slot="end"></ion-datetime-button>
+      <ion-modal [keepContentsMounted]="true">
+        <ng-template>
+          <ion-datetime id="date" presentation="date" formControlName="date" [showDefaultButtons]="true" doneText="Confirmar" cancelText="Cancelar"></ion-datetime>
+        </ng-template>
+      </ion-modal>
+    </ion-item>
+  </ion-list>
+
+  <ion-list inset="true">
+    <ion-item>
+      <ion-textarea label="Descripción" formControlName="description" placeholder="Ej. Gasolina, comida, papelería..." labelPlacement="floating" rows="5"></ion-textarea>
+    </ion-item>
+  </ion-list>
+
+  <ion-button expand="block" (click)="save()" [disabled]="form.invalid" class="ion-padding-horizontal">
+    Guardar
+  </ion-button>
+</form>

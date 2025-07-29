@@ -17,7 +17,7 @@ export class SummaryComponent  implements OnInit {
     end: '',
     count: 0
   });
-  isLoadingSummary = signal<boolean>(false);
+  isLoadingSummary = input<boolean>(false);
   
   constructor() { }
 
