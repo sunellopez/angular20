@@ -6,7 +6,7 @@
     <ion-item>
       <ion-label>Fecha</ion-label>
       <ion-datetime-button datetime="datetime" slot="end"></ion-datetime-button>
-      <ion-modal [keepContentsMounted]="true">
+      <ion-modal [keepContentsMounted]="true" style="    --backdrop-opacity: 0.4;">
         <ng-template>
           <ion-datetime id="datetime" presentation="date" [preferWheel]="true" formControlName="date" [showDefaultButtons]="true" doneText="Confirmar" cancelText="Cancelar"></ion-datetime>
         </ng-template>
