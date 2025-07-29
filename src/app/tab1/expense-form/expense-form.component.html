@@ -5,10 +5,10 @@
     </ion-item>
     <ion-item>
       <ion-label>Fecha</ion-label>
-      <ion-datetime-button datetime="date" slot="end"></ion-datetime-button>
+      <ion-datetime-button datetime="datetime" slot="end"></ion-datetime-button>
       <ion-modal [keepContentsMounted]="true">
         <ng-template>
-          <ion-datetime id="date" presentation="date" formControlName="date" [showDefaultButtons]="true" doneText="Confirmar" cancelText="Cancelar"></ion-datetime>
+          <ion-datetime id="datetime" presentation="date" [preferWheel]="true" formControlName="date" [showDefaultButtons]="true" doneText="Confirmar" cancelText="Cancelar"></ion-datetime>
         </ng-template>
       </ion-modal>
     </ion-item>
