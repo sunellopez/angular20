@@ -1,5 +1,5 @@
 import { Component, inject, signal, WritableSignal } from '@angular/core';
-import { IonThumbnail, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonNote, IonList, IonFab, IonFabButton, IonIcon, IonModal, IonButtons, IonButton, IonCol, IonGrid, IonRow, IonInfiniteScroll, IonInfiniteScrollContent, IonSkeletonText, IonListHeader, IonText } from '@ionic/angular/standalone';
+import { IonThumbnail, IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonLabel, IonNote, IonList, IonFab, IonFabButton, IonIcon, IonModal, IonButtons, IonButton, IonInfiniteScroll, IonInfiniteScrollContent, IonSkeletonText, IonListHeader, IonText } from '@ionic/angular/standalone';
 import { ExpenseService } from '../service/expense/expense.service';
 import { ExpenseFormComponent } from './expense-form/expense-form.component';
 import { CurrencyPipe, DatePipe } from '@angular/common';
@@ -10,7 +10,7 @@ import { SummaryComponent } from './summary/summary.component';
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss'],
-  imports: [IonText, IonListHeader, SummaryComponent, DatePipe, IonThumbnail, IonSkeletonText, CurrencyPipe, IonInfiniteScrollContent, IonInfiniteScroll, IonRow, IonGrid, IonCol, IonButton, IonButtons, ExpenseFormComponent, IonModal, IonIcon, IonFabButton, IonFab, IonList, IonNote, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent],
+  imports: [IonText, IonListHeader, SummaryComponent, DatePipe, IonThumbnail, IonSkeletonText, CurrencyPipe, IonInfiniteScrollContent, IonInfiniteScroll, IonButton, IonButtons, ExpenseFormComponent, IonModal, IonIcon, IonFabButton, IonFab, IonList, IonNote, IonLabel, IonItem, IonHeader, IonToolbar, IonTitle, IonContent],
   standalone: true
 })
 export class Tab1Page {

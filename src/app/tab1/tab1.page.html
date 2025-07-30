@@ -12,24 +12,6 @@
     </ion-toolbar>
   </ion-header>
 
-  <ion-grid class="ion-padding-horizontal">
-    <ion-row>
-      <ion-col>
-        <ion-label>
-          <ion-text color="medium">
-            <p>
-              @if (!isLoadingSummary()) {
-                {{ summary().start | date:'d MMMM y':'' }}
-              } @else {
-                <ion-skeleton-text [animated]="true" style="width: 30%; --border-radius: 9999px;"></ion-skeleton-text>
-              }
-            </p>
-          </ion-text> 
-        </ion-label>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-
   <app-summary [summary]="summary()" [isLoadingSummary]="isLoadingSummary()"></app-summary>
 
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
