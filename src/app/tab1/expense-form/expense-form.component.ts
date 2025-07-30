@@ -1,6 +1,6 @@
 import { Component, inject, OnInit, output } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { IonButton, IonItem, IonLabel, IonInput, IonDatetime, IonTextarea, IonList, IonModal, IonDatetimeButton, ModalController, ToastController, LoadingController } from "@ionic/angular/standalone";
+import { IonButton, IonItem, IonInput, IonDatetime, IonTextarea, IonModal, IonDatetimeButton, ModalController, ToastController, LoadingController, IonIcon } from "@ionic/angular/standalone";
 import { finalize } from 'rxjs';
 import { ExpenseService } from 'src/app/service/expense/expense.service';
 
@@ -8,7 +8,7 @@ import { ExpenseService } from 'src/app/service/expense/expense.service';
   selector: 'app-expense-form',
   templateUrl: './expense-form.component.html',
   styleUrls: ['./expense-form.component.scss'],
-  imports: [IonDatetimeButton, IonModal, IonList, IonTextarea, ReactiveFormsModule, IonDatetime, IonInput, IonLabel, IonItem, IonButton]
+  imports: [IonIcon, IonDatetimeButton, IonModal, IonTextarea, ReactiveFormsModule, IonDatetime, IonInput, IonItem, IonButton]
 })
 export class ExpenseFormComponent  implements OnInit {
   private fb = inject(FormBuilder);
@@ -16,14 +16,14 @@ export class ExpenseFormComponent  implements OnInit {
   private expenseService = inject(ExpenseService);
   private toastController = inject(ToastController);
   private loadingCtrl = inject(LoadingController);
-  protected expand = output();
 
   form = this.fb.group({
     description: ['', Validators.required],
     amount: ['', [Validators.required, Validators.min(0.01)]],
     date: [new Date().toISOString().substring(0, 10), Validators.required],
   });
-
+  showCalendar = false;
+  
   constructor() { }
 
   ngOnInit() {}
@@ -73,5 +73,13 @@ export class ExpenseFormComponent  implements OnInit {
     });
 
     await toast.present();
+  }
+
+  openCalendar() {
+    this.showCalendar = true;
+  }
+
+  cancelCalendar() {
+    this.showCalendar = false;
   }
 }
