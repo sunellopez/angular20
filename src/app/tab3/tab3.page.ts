@@ -1,8 +1,8 @@
 import { Component, computed, inject } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonAvatar, IonLabel, IonNote, IonText, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonIcon, IonChip, IonList, AlertController, ToastController, LoadingController, IonImg } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonItem, IonAvatar, IonLabel, IonNote, IonText, IonCard, IonCardHeader, IonCardTitle, IonCardContent, IonInput, IonIcon, IonChip, IonList, AlertController, ToastController, LoadingController, IonImg, IonRouterOutlet } from '@ionic/angular/standalone';
 import { UserService } from '../service/user/user.service';
 import { AuthService } from '../service/auth/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { finalize } from 'rxjs';
 @Component({
   selector: 'app-tab3',
@@ -105,5 +105,9 @@ export class Tab3Page {
     });
 
     toast.present();
+  }
+
+  goToEditProfile() {
+    this.router.navigate(['edit-profile']);
   }
 }
