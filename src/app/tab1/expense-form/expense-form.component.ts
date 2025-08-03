@@ -16,11 +16,13 @@ export class ExpenseFormComponent  implements OnInit {
   private expenseService = inject(ExpenseService);
   private toastController = inject(ToastController);
   private loadingCtrl = inject(LoadingController);
+  today = new Date();
+  todayString = `${this.today.getFullYear()}-${String(this.today.getMonth() + 1).padStart(2, '0')}-${String(this.today.getDate()).padStart(2, '0')}`;
 
   form = this.fb.group({
     description: ['', Validators.required],
     amount: ['', [Validators.required, Validators.min(0.01)]],
-    date: [new Date().toISOString().substring(0, 10), Validators.required],
+    date: [this.todayString, Validators.required],
   });
   showCalendar = false;
   
