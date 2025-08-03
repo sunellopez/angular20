@@ -1,3 +1,19 @@
-<p>
-  edit-profile-form works!
-</p>
+<form [formGroup]="profileForm" class="ion-padding">
+  <h5>Nombre</h5>
+  <ion-item lines="none">  
+    <ion-input aria-label="name" [clearInput]="true" formControlName="name">
+      <ion-icon slot="start" icon="person"></ion-icon>
+    </ion-input>
+  </ion-item>
+  
+  <h5>Correo</h5>
+  <ion-item lines="none">
+    <ion-input aria-label="email" type="email" [clearInput]="true" formControlName="email">
+      <ion-icon slot="start" icon="mail"></ion-icon>
+    </ion-input>
+  </ion-item>
+  
+  <ion-button expand="block" class="ion-padding-top" [disabled]="profileForm.invalid" (click)="save()">
+    Guardar
+  </ion-button>
+</form>

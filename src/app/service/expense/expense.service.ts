@@ -24,4 +24,12 @@ export class ExpenseService {
   getWeeklySummary():Observable<Summary> {
     return this.http.get<Summary>(`${this.apiUrl}/expenses/summary`);
   }
+  
+  getHighestExpenseThisWeek():Observable<Expense> {
+    return this.http.get<Expense>(`${this.apiUrl}/expenses/highest-this-week`);
+  }
+  
+  getMonthlyExpense(year: number):Observable<any> {
+    return this.http.get<{ data: { monthlyExpenses: number[] } }>(`${environment.apiUrl}/expenses/monthly?year=${year}`);
+  }
 }

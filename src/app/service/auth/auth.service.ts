@@ -33,11 +33,6 @@ export class AuthService {
     return localStorage.getItem(this.authTokenKey);
   }
 
-  // === USER ===
-  getUser() {
-    return this.user();
-  }
-
   getUserSignal() {
     return this.user;
   }

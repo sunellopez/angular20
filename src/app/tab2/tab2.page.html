@@ -12,5 +12,86 @@
       <ion-title size="large">Dashboard</ion-title>
     </ion-toolbar>
   </ion-header>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Gasto Semanal</ion-card-title>
+      <ion-card-subtitle>Total {{ summary().total | currency }}</ion-card-subtitle>
+    </ion-card-header>
 
+    <ion-card-content>
+      <apx-chart
+        #chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [title]="chartOptions.title"
+        [plotOptions]="chartOptions.plotOptions"
+        [tooltip]="chartOptions.tooltip"
+        [stroke]="chartOptions.stroke"
+        [markers]="chartOptions.markers"
+      ></apx-chart>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ highestExpenseThisWeek().amount | currency }}</ion-card-title>
+      <ion-card-subtitle>
+        Gasto más alto
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      {{ highestExpenseThisWeek().description}} - {{highestExpenseThisWeek().date }}
+    </ion-card-content>
+
+    <ion-button fill="clear">Ver más</ion-button>
+  </ion-card>
+  
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Gasto por Mes</ion-card-title>
+      <ion-card-subtitle>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <span>Comparativa de gastos</span>
+          <ion-datetime-button datetime="datetime" style="margin-left: auto;"></ion-datetime-button>
+          <ion-modal [keepContentsMounted]="true">
+            <ng-template>
+              <ion-datetime
+                id="datetime"
+                presentation="year"
+                [value]="selectedYear"
+                [min]="2024"
+                [max]="2025"
+                [preferWheel]="true" 
+                [showDefaultButtons]="true" 
+                doneText="Confirmar" 
+                cancelText="Cancelar"
+                (ionChange)="loadMonthlyExpense($event.detail.value)"
+              >
+              </ion-datetime>
+            </ng-template>
+          </ion-modal>
+        </div>
+      </ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <apx-chart
+        [series]="monthlyExpenseChartOptions.series"
+        [chart]="monthlyExpenseChartOptions.chart"
+        [xaxis]="monthlyExpenseChartOptions.xaxis"
+        [title]="monthlyExpenseChartOptions.title"
+        [plotOptions]="monthlyExpenseChartOptions.plotOptions"
+        [tooltip]="monthlyExpenseChartOptions.tooltip"
+        [labels]="monthlyExpenseChartOptions.labels"
+        [grid]="monthlyExpenseChartOptions.grid"
+        [dataLabels]="monthlyExpenseChartOptions.dataLabels"
+        [legend]="monthlyExpenseChartOptions.legend"
+      ></apx-chart>
+    </ion-card-content>
+
+    <ion-button fill="clear">Ver más</ion-button>
+  </ion-card>
 </ion-content>
