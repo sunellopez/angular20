@@ -55,11 +55,11 @@
       <ion-card-subtitle>
         <div style="display: flex; justify-content: space-between; align-items: center;">
           <span>Comparativa de gastos</span>
-          <ion-datetime-button datetime="datetime" style="margin-left: auto;"></ion-datetime-button>
+          <ion-datetime-button datetime="datetime-dashboard" style="margin-left: auto;"></ion-datetime-button>
           <ion-modal [keepContentsMounted]="true">
             <ng-template>
               <ion-datetime
-                id="datetime"
+                id="datetime-dashboard"
                 presentation="year"
                 [value]="selectedYear"
                 [min]="2024"
