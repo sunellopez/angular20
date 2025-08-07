@@ -109,4 +109,8 @@ export class Tab3Page {
   goToEditProfile() {
     this.router.navigate(['tabs/profile/edit']);
   }
+  
+  goToNotifications() {
+    this.router.navigate(['tabs/profile/notifications']);
+  }
 }

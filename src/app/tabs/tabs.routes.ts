@@ -52,5 +52,9 @@ export const routes: Routes = [
     path: 'profile/edit',
     loadComponent: () =>
       import('../tab3/edit-profile/edit-profile.page').then((m) => m.EditProfilePage),
+  },
+  {
+    path: 'profile/notifications',
+    loadComponent: () => import('../tab3/notifications/notifications.page').then( m => m.NotificationsPage)
   }
 ];
