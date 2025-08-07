@@ -49,7 +49,7 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'edit-profile',
+    path: 'profile/edit',
     loadComponent: () =>
       import('../tab3/edit-profile/edit-profile.page').then((m) => m.EditProfilePage),
   }
