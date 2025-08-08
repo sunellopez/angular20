@@ -1,11 +1,18 @@
-<ion-header class="ion-no-border">
+<ion-header class="ion-no-border" [translucent]="true">
   <ion-toolbar color="light">
     <ion-title>Bienvenido</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" [fullscreen]="false" color="light">
-  <div class="content-center">
+<ion-content class="ion-padding" [fullscreen]="true" color="light">
+  <ion-header collapse="condense">
+    <ion-toolbar color="light">
+      <ion-title size="large">Bienvenido</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" />
     <form [formGroup]="form">
       <ion-input shape="round" class="custom" mode="md" label="Correo" fill="outline" type="email" placeholder="Ingresa tu correo" formControlName="email"></ion-input>
       <br>

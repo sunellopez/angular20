@@ -10,6 +10,8 @@ import { LOCALE_ID } from '@angular/core';
 import { DEFAULT_CURRENCY_CODE } from '@angular/core';
 import localeEs from '@angular/common/locales/es-MX';
 import { registerLocaleData } from '@angular/common';
+import { provideLottieOptions } from 'ngx-lottie';
+import player from 'lottie-web';
 
 registerLocaleData(localeEs);
 
@@ -27,6 +29,9 @@ bootstrapApplication(AppComponent, {
       withFetch()
     ),
     { provide: LOCALE_ID, useValue: 'es-MX' },
-    {provide: DEFAULT_CURRENCY_CODE, useValue: 'MXN'}
+    {provide: DEFAULT_CURRENCY_CODE, useValue: 'MXN'},
+    provideLottieOptions({
+      player: () => player,
+    })
   ],
 });

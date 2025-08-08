@@ -4,12 +4,13 @@ import { Router } from '@angular/router';
 import { finalize } from 'rxjs';
 import { IonContent, IonInput, IonButton, ToastController, IonFooter, IonToolbar, IonTitle, IonInputPasswordToggle, LoadingController, IonHeader } from "@ionic/angular/standalone";
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-
+import { AnimationItem } from 'lottie-web';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  imports: [IonHeader, IonTitle, IonToolbar, IonFooter, IonButton, IonInput, IonContent, IonInputPasswordToggle, ReactiveFormsModule]
+  imports: [LottieComponent, IonHeader, IonTitle, IonToolbar, IonFooter, IonButton, IonInput, IonContent, IonInputPasswordToggle, ReactiveFormsModule]
 })
 export class LoginComponent  implements OnInit {
   private fb = inject(FormBuilder);
@@ -24,6 +25,9 @@ export class LoginComponent  implements OnInit {
   });
 
   errorMessage: string = '';
+  options: AnimationOptions = {
+    path: '/assets/animations/login.json',
+  };
 
   constructor() { }
 
@@ -83,5 +87,9 @@ export class LoginComponent  implements OnInit {
     });
 
     toast.present();
+  }
+
+  animationCreated(animationItem: AnimationItem): void {
+    // console.log(animationItem);
   }
 }
