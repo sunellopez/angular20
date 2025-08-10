@@ -1,0 +1,30 @@
+<ion-header class="ion-no-border" [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrarse</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" [fullscreen]="true" color="light">
+  <ion-header collapse="condense">
+    <ion-toolbar color="light">
+      <ion-title size="large">Registrarse</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div>
+    <ng-lottie [options]="options" (animationCreated)="animationCreated($event)" />
+    <form [formGroup]="form">
+      <ion-input shape="round" mode="md" label="Nombre" fill="outline" placeholder="Nombre" formControlName="name"></ion-input><br>
+      <ion-input shape="round" mode="md" label="Correo" fill="outline" type="email" placeholder="Ingresa tu correo" formControlName="email"></ion-input><br>
+      <ion-input shape="round" mode="md" label="Contraseña" fill="outline" type="password" placeholder="Ingresa tu contraseña" formControlName="password">
+        <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+      </ion-input><br>
+      <ion-button shape="round" expand="block" (click)="save()" [disabled]="form.invalid">
+        Crear cuenta
+      </ion-button>
+    </form>
+  </div>
+</ion-content>

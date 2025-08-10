@@ -18,6 +18,6 @@ export const routes: Routes = [
   },
   {
     path: 'sign-up',
-    loadComponent: () => import('./sign-up/sign-up/sign-up.page').then( m => m.SignUpPage)
+    loadComponent: () => import('./sign-up/sign-up.page').then( m => m.SignUpPage)
   }
 ];

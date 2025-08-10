@@ -5,12 +5,14 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonButtons, IonBackButton,
 import { AuthService } from 'src/app/service/auth/auth.service';
 import { finalize } from 'rxjs';
 import { Router } from '@angular/router';
+import { AnimationItem } from 'lottie-web';
+import { LottieComponent, AnimationOptions } from 'ngx-lottie';
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.page.html',
   styleUrls: ['./sign-up.page.scss'],
   standalone: true,
-  imports: [IonButton, IonInput, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInputPasswordToggle, ReactiveFormsModule]
+  imports: [LottieComponent, IonButton, IonInput, IonBackButton, IonButtons, IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule, IonInputPasswordToggle, ReactiveFormsModule]
 })
 export class SignUpPage implements OnInit {
   private fb = inject(FormBuilder);
@@ -25,6 +27,9 @@ export class SignUpPage implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(8), Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^\\w\\d]).+$')]]
   });
+  options: AnimationOptions = {
+    path: '/assets/animations/login.json',
+  };
 
   constructor() { }
 
@@ -71,5 +76,9 @@ export class SignUpPage implements OnInit {
     });
 
     await toast.present();
+  }
+
+  animationCreated(animationItem: AnimationItem): void {
+    // console.log(animationItem);
   }
 }
